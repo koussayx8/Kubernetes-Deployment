@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: forum-service
+  namespace: outdoors-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: forum-service
+  template:
+    metadata:
+      labels:
+        app: forum-service
+    spec:
+      containers:
+      - name: forum-service
+        image: koussayblh/outdoors-app-forum-service:latest
+        ports:
+        - containerPort: 9090
+        envFrom:
+          - configMapRef:
+              name: services-config
+          - secretRef:
+              name: mysql-secret
+        env:
+          - name: SERVER_PORT
+            value: "9090"

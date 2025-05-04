@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: transport-service
+  namespace: outdoors-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: transport-service
+  template:
+    metadata:
+      labels:
+        app: transport-service
+    spec:
+      containers:
+      - name: transport-service
+        image: koussayblh/outdoors-app-transport-service:latest
+        ports:
+        - containerPort: 9095
+        envFrom:
+          - configMapRef:
+              name: services-config
+          - secretRef:
+              name: mysql-secret
+        env:
+          - name: SERVER_PORT
+            value: "9095"

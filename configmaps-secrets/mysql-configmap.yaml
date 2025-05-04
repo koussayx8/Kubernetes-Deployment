@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql-config
+  namespace: outdoors-app
+data:
+  MYSQL_DATABASE: microservices_db

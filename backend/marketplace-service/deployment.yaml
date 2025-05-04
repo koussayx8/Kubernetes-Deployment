@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: marketplace-service
+  namespace: outdoors-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: marketplace-service
+  template:
+    metadata:
+      labels:
+        app: marketplace-service
+    spec:
+      containers:
+      - name: marketplace-service
+        image: koussayblh/outdoors-app-marketplace-service:latest
+        ports:
+        - containerPort: 9093
+        envFrom:
+          - configMapRef:
+              name: services-config
+          - secretRef:
+              name: mysql-secret
+        env:
+          - name: SERVER_PORT
+            value: "9093"
