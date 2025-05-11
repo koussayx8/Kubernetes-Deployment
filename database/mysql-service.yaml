@@ -43,3 +43,4 @@ spec:
       - name: mysql-data
         persistentVolumeClaim:
           claimName: mysql-data
+    app: mysql
