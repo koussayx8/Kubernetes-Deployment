@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: koussayblh/outdoors-app-frontend:latest
+        image: louaysaad/front-outdoors-app:latest
         ports:
         - containerPort: 80
